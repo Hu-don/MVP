@@ -1,3 +1,4 @@
 # MVP
 
-MVP Template
+MVP Template from Google Architecture.
+

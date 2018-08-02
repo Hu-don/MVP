@@ -2,11 +2,10 @@ package dimsuncom.mvpsample.di
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import dagger.Component
 import dagger.Module
 import dagger.Provides
-import dimsuncom.mvpsample.main.MainActivity
+import dimsuncom.mvpsample.main.*
 import javax.inject.Singleton
 
 /**
@@ -18,9 +17,13 @@ import javax.inject.Singleton
 
 lateinit var dagger: ApplicationComponent
 
+/**
+ * Ici on fourni ce qui ne peut pas être créé dans le systeme de dependance
+ */
 fun initDagger(application: Application) {
     dagger = DaggerApplicationComponent.builder()
             .appModule(AppModule(application))
+            .presenterModule(PresenterModule(true))
             .build()
 }
 
@@ -31,7 +34,7 @@ fun initDagger(application: Application) {
  */
 
 @Singleton
-@Component(modules = [AppModule::class])
+@Component(modules = [AppModule::class, PresenterModule::class])
 interface ApplicationComponent {
     fun inject(mainActivity: MainActivity)
 }
@@ -46,4 +49,12 @@ class AppModule(private val application: Application) {
     @Provides
     @Singleton
     fun getContext(): Context = application
+}
+
+@Module
+class PresenterModule(private val mock: Boolean) {
+
+    @Provides
+    fun getPresenter(): MainPresenter<MainView> =
+            if (mock) MainPresenterMock() else MainPresenterImpl()
 }

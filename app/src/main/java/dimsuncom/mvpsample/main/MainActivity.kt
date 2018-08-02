@@ -4,27 +4,29 @@ import android.os.Bundle
 import dimsuncom.mvpsample.BaseActivity
 import dimsuncom.mvpsample.R
 import dimsuncom.mvpsample.di.dagger
+import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainView {
 
-//    lateinit var presenter: MainPresenter<MainView>
+    @Inject
+    lateinit var presenter: MainPresenter<MainView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dagger.inject(this)
 
         setContentView(R.layout.activity_main)
-//        presenter.onAttach(this)
-//        showLoading()
+        presenter.onAttach(this)
+        showLoading()
     }
 
     override fun onResume() {
         super.onResume()
+        presenter.myMainPresenterSpecialMethod()
     }
 
     override fun onDestroy() {
-//        presenter.onDetach()
-
+        presenter.onDetach()
         super.onDestroy()
     }
 }

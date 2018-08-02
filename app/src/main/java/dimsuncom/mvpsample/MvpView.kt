@@ -6,6 +6,4 @@ interface MvpView {
 
     fun hideLoading()
 
-    fun getBaseActivity()
-
 }

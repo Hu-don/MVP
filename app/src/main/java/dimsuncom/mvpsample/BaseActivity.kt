@@ -5,8 +5,6 @@ import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ProgressBar
-import dimsuncom.mvpsample.di.Toto
-import javax.inject.Inject
 
 open abstract class BaseActivity : AppCompatActivity(), MvpView {
 
@@ -30,9 +28,4 @@ open abstract class BaseActivity : AppCompatActivity(), MvpView {
             mProgressBar?.visibility = View.GONE
         }
     }
-
-    override fun getBaseActivity() {
-
-    }
-
 }

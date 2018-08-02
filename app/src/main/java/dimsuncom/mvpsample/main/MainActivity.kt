@@ -1,27 +1,30 @@
 package dimsuncom.mvpsample.main
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import dimsuncom.mvpsample.BaseActivity
 import dimsuncom.mvpsample.R
+import dimsuncom.mvpsample.di.dagger
 
-abstract class MainActivity : BaseActivity(), MainView {
+class MainActivity : BaseActivity(), MainView {
 
-    lateinit var presenter: MainPresenter<MainView>
+//    lateinit var presenter: MainPresenter<MainView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        dagger.inject(this)
+
         setContentView(R.layout.activity_main)
+//        presenter.onAttach(this)
+//        showLoading()
+    }
 
-        presenter.onAttach(this)
-        showLoading()
-
+    override fun onResume() {
+        super.onResume()
     }
 
     override fun onDestroy() {
+//        presenter.onDetach()
+
         super.onDestroy()
-
-        presenter.onDetach()
     }
-
 }

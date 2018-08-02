@@ -2,21 +2,26 @@ package dimsuncom.mvpsample.main
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import dimsuncom.mvpsample.BaseActivity
 import dimsuncom.mvpsample.R
 
-abstract class MainActivity : AppCompatActivity(), MainContract.View {
+abstract class MainActivity : BaseActivity(), MainView {
 
-    override lateinit var presenter: MainContract.Presenter
+    lateinit var presenter: MainPresenter<MainView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        presenter.onAttach(this)
+        showLoading()
+
     }
 
-    override fun onResume() {
-        super.onResume()
-        presenter.start()
-    }
+    override fun onDestroy() {
+        super.onDestroy()
 
+        presenter.onDetach()
+    }
 
 }

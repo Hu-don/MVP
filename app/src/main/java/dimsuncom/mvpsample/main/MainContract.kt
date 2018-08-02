@@ -1,15 +1,7 @@
 package dimsuncom.mvpsample.main
 
-import dimsuncom.mvpsample.BasePresenter
-import dimsuncom.mvpsample.BaseView
+import dimsuncom.mvpsample.MvpView
 
-interface MainContract {
+interface MainView: MvpView {
 
-   interface View : BaseView<Presenter> {
-       fun testView()
-   }
-
-    interface Presenter : BasePresenter {
-        fun testPresenter()
-    }
 }

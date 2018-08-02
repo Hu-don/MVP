@@ -1,5 +1,5 @@
 package dimsuncom.mvpsample
 
-interface BasePresenter {
-    fun start()
+interface BasePresenter<V : MvpView> : MvpPresenter<V>{
+    override fun onAttach(baseView : V)
 }

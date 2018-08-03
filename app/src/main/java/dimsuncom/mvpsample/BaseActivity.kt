@@ -18,7 +18,7 @@ open abstract class BaseActivity : AppCompatActivity(), MvpView {
         super.onResume()
     }
 
-    override fun showLoading() {
+    override fun showLoading(progressBar: ProgressBar) {
         hideLoading()
         mProgressBar?.visibility = View.VISIBLE
     }

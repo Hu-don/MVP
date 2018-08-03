@@ -7,9 +7,8 @@ import dimsuncom.mvpsample.di.dagger
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainView {
-
     @Inject
-    lateinit var presenter: MainPresenter<MainView>
+    lateinit var presenter: MainPresenterImpl<MainView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +16,6 @@ class MainActivity : BaseActivity(), MainView {
 
         setContentView(R.layout.activity_main)
         presenter.onAttach(this)
-        showLoading()
     }
 
     override fun onResume() {
@@ -29,4 +27,8 @@ class MainActivity : BaseActivity(), MainView {
         presenter.onDetach()
         super.onDestroy()
     }
+
+    override fun specificMainFunction() {
+    }
+
 }

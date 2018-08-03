@@ -23,7 +23,6 @@ lateinit var dagger: ApplicationComponent
 fun initDagger(application: Application) {
     dagger = DaggerApplicationComponent.builder()
             .appModule(AppModule(application))
-            .presenterModule(PresenterModule(true))
             .build()
 }
 
@@ -34,7 +33,7 @@ fun initDagger(application: Application) {
  */
 
 @Singleton
-@Component(modules = [AppModule::class, PresenterModule::class])
+@Component(modules = [AppModule::class, MvpModule::class])
 interface ApplicationComponent {
     fun inject(mainActivity: MainActivity)
 }
@@ -43,6 +42,7 @@ interface ApplicationComponent {
  * @Provides : ce qui peut etre injecté
  * /!\ type de retour unique et donc a l'echelle du component et non du module
  */
+
 @Module
 class AppModule(private val application: Application) {
 
@@ -52,9 +52,8 @@ class AppModule(private val application: Application) {
 }
 
 @Module
-class PresenterModule(private val mock: Boolean) {
+class MvpModule() {
 
     @Provides
-    fun getPresenter(): MainPresenter<MainView> =
-            if (mock) MainPresenterMock() else MainPresenterImpl()
+    fun getMainPresenter(): MainPresenterImpl<MainView> = MainPresenter()
 }

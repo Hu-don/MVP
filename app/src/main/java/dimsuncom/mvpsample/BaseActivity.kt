@@ -12,8 +12,6 @@ open abstract class BaseActivity : AppCompatActivity(), MvpView {
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
-
-
     }
 
     override fun showLoading() {
@@ -26,5 +24,4 @@ open abstract class BaseActivity : AppCompatActivity(), MvpView {
             mProgressBar?.visibility = View.GONE
         }
     }
-
 }

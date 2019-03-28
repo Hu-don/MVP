@@ -5,7 +5,7 @@ import android.os.Bundle
 import dimsuncom.mvpsample.BaseActivity
 import dimsuncom.mvpsample.R
 
-abstract class MainActivity : BaseActivity(), MainView {
+class MainActivity : BaseActivity(), MainView {
 
     lateinit var presenter: MainPresenter<MainView>
 
@@ -15,13 +15,10 @@ abstract class MainActivity : BaseActivity(), MainView {
 
         presenter.onAttach(this)
         showLoading()
-
     }
 
     override fun onDestroy() {
         super.onDestroy()
-
         presenter.onDetach()
     }
-
 }

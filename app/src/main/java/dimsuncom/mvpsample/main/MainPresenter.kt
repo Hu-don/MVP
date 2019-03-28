@@ -8,5 +8,4 @@ import dimsuncom.mvpsample.MvpPresenter
  */
 
 interface MainPresenter <V: MainView> : MvpPresenter<V>{
-
 }
